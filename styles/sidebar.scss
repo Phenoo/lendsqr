@@ -1,3 +1,5 @@
+$green: #39CDCC;
+
 .sidebar {
     height: fit-content;
     background: #fff;
@@ -17,11 +19,35 @@
         padding: 0 22px;
         margin: 8px 0;
     }
+    .pro-inner-item:hover{
+        background-color: $green;
+    }
+   
+    .ps-menu-button.active{
+        background-color: lighten(#111, 30%);
+    }
+
 }
 
 
 .sidebar-list{
     margin: 0 0 1rem;
+    .ps-menu-button:hover{
+        background-color: lighten($green, 30%);
+    }
+}
+.active{
+    background-color: lighten($green, 40%);
+    position: relative;
+    &::before{
+        content: '';
+        background: $green;
+        height: 100%;
+        width: 5px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+    }
 }
 
 

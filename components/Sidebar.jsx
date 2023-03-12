@@ -13,6 +13,7 @@ import { BsChevronDown } from "react-icons/bs";
 
 
 const Item = ({ title, icon, selected, setSelected, isCollapsed, i, secicon }) => {
+  console.log(selected)
   return (
     <MenuItem
       active={selected === title}
@@ -20,7 +21,7 @@ const Item = ({ title, icon, selected, setSelected, isCollapsed, i, secicon }) =
         height: '30px',
 
       }}
-      className="sidebar-item"
+      className={`sidebar-item ${selected === title && 'active' }`}
       onClick={() => setSelected(title)}
       icon={icon}
       key={i}
