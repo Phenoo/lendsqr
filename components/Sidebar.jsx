@@ -4,6 +4,8 @@ import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 import { FaChevronDown, FaBriefcase, FaHome, FaMoneyBillAlt, FaBars } from "react-icons/fa"
 import Logo from './Logo'
 
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 
 import { businessLinks, customerLinks, settingsLinks } from "@/data/links";
@@ -38,6 +40,11 @@ const Side = () => {
   const [selected, setSelected] = useState("Dashboard");
   const { collapseSidebar } = useProSidebar();
 
+  const handleSidebar = () => {
+    collapseSidebar()
+    setIsCollapsed(!isCollapsed)
+  }
+
 
   return (
     <div className="sidebar">
@@ -46,13 +53,26 @@ const Side = () => {
           backgroundColor: '#fff'
         }}>
           <div className="header">
-            <MenuItem>
+            <MenuItem style={{
+              margin: "12px 0 10px 0"
+            }}>
               <Logo />
             </MenuItem>
           </div>
-          <button style={{padding: '20px'}} onClick={() => collapseSidebar()}>
-            {!isCollapsed ? 'mm' : <FaBars />}
-          </button>
+          <MenuItem
+            onClick={() => handleSidebar()}
+            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            className="sidebar-item"
+          >
+            {!isCollapsed && (
+              <div className="flex">
+                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                  <MenuOutlinedIcon />
+                </IconButton>
+                <h6>menu</h6>
+              </div>
+            )}
+          </MenuItem>
           <br />
           <Item
               title='Switch Organizations'
