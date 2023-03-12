@@ -1,0 +1,33 @@
+.sidebar {
+    height: fit-content;
+    background: #fff;
+    color: #545F7D;
+    .header{
+        box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
+    }
+    .main-item{
+        margin: 2rem 0;
+        svg{
+            font-size: 0.9rem;
+        }
+    }
+    h3{
+        text-transform: uppercase;
+        font-size: 0.5rem;
+        padding: 0 22px;
+        margin: 8px 0;
+    }
+}
+
+
+.sidebar-list{
+    margin: 0 0 1rem;
+}
+
+
+.sidebar-item{
+    h6{
+        font-weight: 400;
+        text-transform: capitalize;
+    }
+}
