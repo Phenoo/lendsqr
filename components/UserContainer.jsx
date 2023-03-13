@@ -2,6 +2,7 @@ import React ,{useEffect, useState} from 'react'
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Moment from 'moment'
 import Link from 'next/link';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 const userTableStyles = {
   height: '650px',
   backgroundColor: '#fff',
@@ -12,8 +13,9 @@ const userTableStyles = {
 
 const UserContainer = () => {
     const [users, setUsers] = useState([]);
+    const [modal, setModal] = useState(false);
     const columns = [
-        { field: "orgName", headerName: "Organization", width: 100 },
+        { field: "orgName", headerName: "Organization", width: 100, flex: 1 },
         {
           field: "userName",
           headerName: "Username",
@@ -21,7 +23,7 @@ const UserContainer = () => {
           cellClassName: "name-column--cell",
           width: 100,
           renderCell: (params) => (
-            <Link href={`/${params.id}`}>{params.value}</Link>
+            <Link href={`/user/${params.id}`}>{params.value}</Link>
           )
         },
         {
@@ -37,7 +39,7 @@ const UserContainer = () => {
           field: "phoneNumber",
           headerName: "Phone Number",
           flex: 1,
-          width: 100
+          width: 100,
         },
         {
           field: "createdAt",
@@ -60,6 +62,22 @@ const UserContainer = () => {
             return <button className='btn-pending'>pending</button>;
           }
         },
+        {
+          // field: "",
+          // headerName: "",
+          flex: 0.5,
+          cellClassName: "name-column--cell",
+          width: 100,
+          renderCell: (params) => (
+            <>
+              <button onClick={() => setModal(!modal)}><BsThreeDotsVertical /></button>
+              <p style={{position: ''}}>{modal ? 'dd' : ''}</p>
+            </>
+
+          )
+        },
+
+
       ];
     const fetchData = async () => {
         const response = await fetch(' https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
@@ -114,38 +132,6 @@ const UserContainer = () => {
           sx={userTableStyles}
                     
         />
-        {/* <div>
-            <div className='six-grid'>
-              {
-              columns.map((column, index) => {
-                return (
-                  <div key={index}>
-                      <h6>{column.headerName}</h6>
-                  </div>
-                )
-              } )
-              }
-            </div>
-          {
-            users.map((user, index) => {
-              return (
-                <div key={index} >
-                  <ul className="six-grid user-item" >
-                    <li>{user.orgName}</li>
-                    <li>{user.userName}</li>
-                    <li className='email'>{user.email}</li>
-                    <li style={{whiteSpace: 'wrap'}}>{user.phoneNumber.substring(0, 10)}</li>
-                    <li>
-                    {Moment(user.createdAt).format("MMM Do, YYYY.")}
-                    </li>
-                    <li>{user.status}</li>
-                  </ul>
-                </div>
-              )
-            } )
-          }
-            
-        </div> */}
     </div>
   )
 }

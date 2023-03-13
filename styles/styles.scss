@@ -50,6 +50,7 @@ $blue: #213F7D;
 
 
 .nav-bar{
+    width: 100%;
     background: #fff;
     display: flex;
     justify-content: space-between;
@@ -372,8 +373,6 @@ $blue: #213F7D;
 }
 
 .detail{
-    // width: 1000px;
-    max-width: 1000px;
     color: $blue;
 }
 .light{
@@ -382,24 +381,28 @@ $blue: #213F7D;
 .detail-container{
     width: 100%;
     background: #fff;
-    padding: 1rem;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 10px 0;
 
     .tophead{
         text-transform: capitalize;
+        font-size: 1.4rem;
     }
 }
 
 .detail-box{
     padding: 1rem;
-    // display: flex;
-    gap: 1rem;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    // display: grid;
+    // grid-template-columns: repeat(4,1fr);
     border-bottom: 1px solid $blue;
 }
 
 .detail-item{
-    min-width: 100px;
+    width: 180px;
     margin: 10px 0;
     h6{
         text-transform: uppercase;
@@ -412,5 +415,78 @@ $blue: #213F7D;
     .email{
         text-transform: lowercase;
         font-size: 12px;
+    }
+}
+
+.none{
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    section{
+        width: 92%;
+        padding: 1rem 0;
+    }
+    .headline{
+        font-size: 1.25rem;
+    }
+    .nav-bar{
+        .profile{
+            h6{
+                display: none;
+            }
+        }
+        .search-bar{
+            display: none;
+        }
+    }
+    .stats-container{
+        justify-content: center;
+    }
+    .user{
+        .space-between{
+            align-items: flex-start;
+            gap: 1rem;
+            flex-direction: column;
+        }
+    }
+    .basic-info-container{
+        padding: 1rem 1rem 0;
+    }
+    .light{
+        font-size: 8px;
+    }
+    .basic-info{
+        gap: 10px;
+        h4{
+            font-size: 10px;
+        }
+        .rating{
+            padding: 0 10px;
+        }
+        .image{
+            img{
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+    .btn-container{
+        gap: 4px;
+        button{
+            font-size: 8px;
+            padding: 0px;
+        }
+    }
+    .detail-container{
+        .tophead{
+            font-size: 1.2rem;
+        }
+    }
+    .detail-box{
+        gap: 1rem;
+    }
+    .none{
+        display: flex;
     }
 }

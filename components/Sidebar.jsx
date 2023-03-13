@@ -13,7 +13,6 @@ import { BsChevronDown } from "react-icons/bs";
 
 
 const Item = ({ title, icon, selected, setSelected, isCollapsed, i, secicon }) => {
-  console.log(selected)
   return (
     <MenuItem
       active={selected === title}
@@ -36,7 +35,7 @@ const Item = ({ title, icon, selected, setSelected, isCollapsed, i, secicon }) =
     </MenuItem>
   );
 };
-const Side = () => {
+const Side = ({show}) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const { collapseSidebar } = useProSidebar();
@@ -48,7 +47,7 @@ const Side = () => {
 
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${show ? 'mobile' : ''}`}>
       <Sidebar>
         <Menu style={{
           backgroundColor: '#fff'

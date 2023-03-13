@@ -4,6 +4,7 @@ $green: #39CDCC;
     height: fit-content;
     background: #fff;
     color: #545F7D;
+    transition: all 0.3s ease;
     .header{
         box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
     }
@@ -35,25 +36,47 @@ $green: #39CDCC;
     .ps-menu-button:hover{
         background-color: lighten($green, 30%);
     }
-}
-.active{
-    background-color: lighten($green, 40%);
-    position: relative;
-    &::before{
-        content: '';
-        background: $green;
-        height: 100%;
-        width: 5px;
-        display: flex;
-        align-items: center;
-        position: absolute;
+    .active{
+        background-color: lighten($green, 40%);
+        position: relative;
+        &::before{
+            content: '';
+            background: $green;
+            height: 100%;
+            width: 5px;
+            display: flex;
+            align-items: center;
+            position: absolute;
+        }
     }
 }
+
 
 
 .sidebar-item{
     h6{
         font-weight: 400;
         text-transform: capitalize;
+    }
+}
+
+.none{
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar{
+        width: 0;
+        display: none;
+        transition: all 0.3s ease;
+    }
+    .mobile{
+        transition: all 0.3s ease;
+        width: auto;
+        display: flex;
+        position: fixed;
+    }
+    .none{
+        display: flex;
     }
 }
