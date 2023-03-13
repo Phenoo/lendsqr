@@ -11,8 +11,7 @@ const userTableStyles = {
   fontSize: '14px',
 };
 
-const UserContainer = () => {
-    const [users, setUsers] = useState([]);
+const UserContainer = ({users}) => {
     const [modal, setModal] = useState(false);
     const columns = [
         { field: "orgName", headerName: "Organization", width: 100, flex: 1 },
@@ -79,15 +78,9 @@ const UserContainer = () => {
 
 
       ];
-    const fetchData = async () => {
-        const response = await fetch(' https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
-        const data = await response.json()
-        setUsers(data)
-    }
 
-    useEffect(() => {
-        fetchData()
-    }, [])
+
+
     
   return (
     <div

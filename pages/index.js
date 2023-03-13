@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 
 
-export default function Home() {
+export default function Home({users}) {
   return (
     <>
       <Head>
@@ -18,10 +18,25 @@ export default function Home() {
         <div className='container'>
           <section>
             <Stats />
-            <UserContainer />
+            <UserContainer users={users} />
           </section>
         </div>
       </Layout>
     </>
   )
+}
+
+export const fetchData = async () => {
+  const response = await fetch(' https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
+  const data = await response.json()
+
+  return data
+}
+
+
+export async function getStaticProps() {
+  const users = await fetchData()
+
+  return { props: { users}}
+
 }
