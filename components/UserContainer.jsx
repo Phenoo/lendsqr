@@ -87,6 +87,7 @@ const UserContainer = ({users}) => {
     sx={{
       "& .MuiDataGrid-root": {
         border: "none",
+        color: '#213F7D'
       },
       "& .MuiDataGrid-cell": {
         borderBottom: "none",
