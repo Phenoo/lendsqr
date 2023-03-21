@@ -8,7 +8,24 @@ import { AiOutlineStar } from 'react-icons/ai'
 import { BsArrowLeft } from 'react-icons/bs'
 import { FaStar } from 'react-icons/fa'
 
-const UserPage = ({user}) => {
+const UserPage = () => {
+    const [user, setUser] = useState()
+    const router = useRouter()
+    const {id} = router.query;
+    const fetchData = () => {
+        fetch(`https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`)
+          .then(res => res.json())
+          .then(data => {
+                setUser(data)
+            })
+          .catch(err => {
+                console.log(err)
+            })
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [id])
 
 
     return (
@@ -17,6 +34,15 @@ const UserPage = ({user}) => {
                 <title>Lendsqr User Profile </title>
             </Head>
         <Layout>
+            {
+                !user ? <section>
+                    <br />
+                    <br />
+                    <br />
+                    <h4 className='tophead'>loading...</h4>
+                </section>
+                : ''
+            }
             { user &&
                 <div className='user'>
                     <section>
@@ -194,28 +220,21 @@ const UserPage = ({user}) => {
 
 export default UserPage
 
-export async function getStaticPaths() {
-    // Call an external API endpoint to get posts
-    const res = await fetch('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
-    const posts = await res.json()
+// export async function getStaticPaths() {
+//     const res = await fetch('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/')
+//     const posts = await res.json()
   
-    // Get the paths we want to pre-render based on posts
-    const paths = posts.map((post) => ({
-      params: { id: post.id },
-    }))
+//     const paths = posts.map((post) => ({
+//       params: { id: post.id },
+//     }))
   
-    // We'll pre-render only these paths at build time.
-    // { fallback: false } means other routes should 404.
-    return { paths, fallback: false }
-  }
+//     return { paths, fallback: false }
+//   }
 
-export async function getStaticProps({ params }) {
-    // params contains the post `id`.
-    // If the route is like /posts/1, then params.id is 1
-    const res = await fetch(`https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${params.id}`)
-    const user = await res.json()
+// export async function getStaticProps({ params }) {
+//     const res = await fetch(`https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${params.id}`)
+//     const user = await res.json();
   
-    // Pass post data to the page via props
-    return { props: { user } }
-  }
+//     return { props: { user } }
+//   }
   
